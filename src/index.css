@@ -8,6 +8,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background-color: #FFF7ED;
 }
 
 /*************** Components*******************/
@@ -68,7 +69,9 @@ footer {
   justify-content: center;
   background-color: #202020;
   color: #ffffff;
+  font-weight: 700;
   height: 105px;
+  padding: 1em;
 }
 
 .footer-title {
@@ -86,24 +89,12 @@ footer {
 
 /* Layout component */
 .site-container {
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
-  width: 414px;
-  border: 10px solid black;
+  min-width: 414px;
   border-radius: 10px;
-  height: 760px;
-  overflow-y: scroll;
-}
-
-.site-container::-webkit-scrollbar {
-  width: 8px;
-}
-
-.site-container::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.site-container::-webkit-scrollbar-thumb {
-  background: transparent;
+  height: 100vh;
 }
 
 /*******************Pages ***********************/
@@ -169,11 +160,14 @@ footer {
   margin-top: 2em;
 }
 
+.blog-post-recent-post-heading {
+  margin-top: 2em;
+}
+
 /*About me page & Blog post page*/
 
 .about-me-page-container,
 .blog-post-page-container {
-  width: 374px;
   padding: 1em;
 }
 
@@ -197,8 +191,30 @@ footer {
   margin-top: 2em;
 }
 
-.about-me-page-last-paragraph .blog-post-last-paragraph {
+.about-me-page-last-paragraph {
   margin-bottom: 2em;
+}
+
+
+/*Not Found Page*/
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 1em;
+}
+
+.return-home-link {
+  background-color: #202020;;
+  color: #ffffff;
+  font-weight: 700;
+  width: 100%;
+  padding: 1em;
+  text-align: center;
+  text-decoration: none;
 }
 
 /******* Features **********/
@@ -250,15 +266,15 @@ footer {
   font-weight: 700;
 }
 
+.view-more-articles-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 /* Media query for desktop devices */
 
 @media screen and (min-width: 1085px) {
-  /*Layout component*/
-
-  .site-container {
-    width: 1085px;
-  }
-
+ 
   /*Header component*/
 
   .logo-container > a {
@@ -314,7 +330,6 @@ footer {
   .about-me-page-container,
   .blog-post-page-container {
     margin: 0 auto;
-    width: 911px;
   }
 
   .about-me-page-intro > div {
@@ -342,6 +357,11 @@ footer {
     width: 100%;
   }
 
+  /*Not Found Page*/
+  .return-home-link {
+    width: 50%;
+  }
+
   /*Article preview feature*/
 
   .article-preview-container {
@@ -353,7 +373,6 @@ footer {
   }
 
   .article {
-    width: 309px;
     margin-right: 1em;
   }
 

@@ -10,9 +10,14 @@ export default function Blog() {
     useArticlePreviewCount(windowWidth, articleData)
   );
 
+
+
   function handleViewMoreBtn() {
-    if (articlePreviewCount <= articleData.length) {
-      setArticlePreviewCount((prev) => prev + 3);
+    if (articlePreviewCount < articleData.length) {
+      setArticlePreviewCount(prev => prev + 3);
+
+    } else if(articlePreviewCount === articleData.length) {
+      setArticlePreviewCount(prev => prev - 3)
     }
   }
 
@@ -43,8 +48,8 @@ export default function Blog() {
           <div className="view-more-articles">
             <a className="view-more-articles-link" onClick={handleViewMoreBtn}>
               {articlePreviewCount === articleData.length
-                ? "No more articles to view"
-                : "View More"}
+                ? "View less"
+                : "View more"}
             </a>
           </div>
         )}

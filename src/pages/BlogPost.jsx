@@ -1,18 +1,23 @@
 import React from "react";
 import articleData from "./data/articledata";
-import { useParams } from "react-router-dom";
+import { useParams, Link} from "react-router-dom";
+import useWindowWidth from "./hooks/useWindowWidth";
+import useArticlePreviewCount from "./hooks/useArticlePreviewCount";
+import NotFound from "./NotFound";
 
 export default function BlogPost() {
   const { blogId } = useParams();
   const [blogPost, setBlogPost] = React.useState(null);
   const post = articleData.find((post) => post.id === parseInt(blogId));
+  const windowWidth = useWindowWidth();
+  const articlePreviewCount = useArticlePreviewCount(windowWidth, articleData);
 
   React.useEffect(() => {
     setBlogPost(post);
   }, [blogId]);
 
   if (!blogPost) {
-    return <div>....Loading posts</div>;
+    return <NotFound />;
   }
 
   return (
@@ -51,6 +56,26 @@ export default function BlogPost() {
         That helped me grok what I was learning, and I realized that posting my
         learning summaries was also helping others learn and stay motivated.
       </p>
+
+      <h3 className="article-recent-posts-heading blog-post-recent-post-heading">Recent posts</h3>
+
+      <div className="article-preview-container">
+        {articleData.slice(0, articlePreviewCount).map((article) => (
+          <div className="article" key={article.id}>
+            <Link className="article-link" to={`/blog/${article.id}`}>
+              <img
+                className="article-image"
+                src={article.image}
+                alt={article.title}
+              />
+              <p className="article-date">{article.date}</p>
+              <h3 className="article-heading">{article.title}</h3>
+              <p className="article-intro">{article.IntroTxt}</p>
+            </Link>
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 }
