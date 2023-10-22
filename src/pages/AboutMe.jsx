@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import articleData from "./data/articledata";
+import articleDataWithUrlsIds from "./data/articledata";
 import useWindowWidth from "./hooks/useWindowWidth";
 import useArticlePreviewCount from "./hooks/useArticlePreviewCount";
 import aboutMePageImg from "./image18.jpg";
 
 export default function AboutMe() {
   const windowWidth = useWindowWidth();
-  const articlePreviewCount = useArticlePreviewCount(windowWidth, articleData);
+  const articlePreviewCount = useArticlePreviewCount(windowWidth, articleDataWithUrlsIds);
 
   return (
     <>
@@ -63,9 +63,9 @@ export default function AboutMe() {
       <h3 className="article-recent-posts-heading">Recent posts</h3>
 
       <div className="article-preview-container">
-        {articleData.slice(0, articlePreviewCount).map((article) => (
+        {articleDataWithUrlsIds.slice(0, articlePreviewCount).map((article) => (
           <div className="article" key={article.id}>
-            <Link className="article-link" to={`/blog/${article.id}`}>
+            <Link className="article-link" to={`/blog/${article.url}`}>
               <img
                 className="article-image"
                 src={article.image}

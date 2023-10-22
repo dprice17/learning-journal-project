@@ -12,7 +12,6 @@ const articleData = [
     title: "Blog one",
     IntroTxt:
       "I'm excited to start a new learning journey as a Scrimba Bootcamp student! After several months of learning in the Frontend Developer Career Path.",
-    id: 1,
   },
 
   {
@@ -21,7 +20,6 @@ const articleData = [
     title: "Blog two",
     IntroTxt:
       "I'm excited to start a new learning journey as a Scrimba Bootcamp student! After several months of learning in the Frontend Developer Career Path.",
-    id: 2,
   },
 
   {
@@ -30,7 +28,6 @@ const articleData = [
     title: "Blog three",
     IntroTxt:
       "I'm excited to start a new learning journey as a Scrimba Bootcamp student! After several months of learning in the Frontend Developer Career Path.",
-    id: 3,
   },
 
   {
@@ -39,7 +36,6 @@ const articleData = [
     title: "Blog four",
     IntroTxt:
       "I'm excited to start a new learning journey as a Scrimba Bootcamp student! After several months of learning in the Frontend Developer Career Path.",
-    id: 4,
   },
 
   {
@@ -48,7 +44,6 @@ const articleData = [
     title: "Blog five",
     IntroTxt:
       "I'm excited to start a new learning journey as a Scrimba Bootcamp student! After several months of learning in the Frontend Developer Career Path.",
-    id: 5,
   },
 
   {
@@ -57,8 +52,13 @@ const articleData = [
     title: "Blog six",
     IntroTxt:
       "I'm excited to start a new learning journey as a Scrimba Bootcamp student! After several months of learning in the Frontend Developer Career Path.",
-    id: 6,
   },
 ];
 
-export default articleData;
+const articleDataWithUrlsIds = articleData.map((article, index) => ({
+  ...article,
+  id: index + 1,
+  url: `blog-${index + 1}`,
+}));
+
+export default articleDataWithUrlsIds;

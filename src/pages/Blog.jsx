@@ -1,28 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import articleData from "./data/articledata";
+import articleDataWithUrlsIds from "./data/articledata";
 import useWindowWidth from "./hooks/useWindowWidth";
 import useArticlePreviewCount from "./hooks/useArticlePreviewCount";
 
 export default function Blog() {
   const windowWidth = useWindowWidth();
   const [articlePreviewCount, setArticlePreviewCount] = React.useState(
-    useArticlePreviewCount(windowWidth, articleData)
+    useArticlePreviewCount(windowWidth, articleDataWithUrlsIds)
   );
 
 
-
   function handleViewMoreBtn() {
-    if (articlePreviewCount < articleData.length) {
+    if (articlePreviewCount < articleDataWithUrlsIds.length) {
       setArticlePreviewCount(prev => prev + 3);
 
-    } else if(articlePreviewCount === articleData.length) {
+    } else if(articlePreviewCount === articleDataWithUrlsIds.length) {
       setArticlePreviewCount(prev => prev - 3)
     }
   }
 
   const numberOfArticlesDisplayed =
-    windowWidth >= 1085 ? articleData.length : articlePreviewCount;
+    windowWidth >= 1085 ? articleDataWithUrlsIds.length : articlePreviewCount;
 
   return (
     <>
@@ -30,9 +29,9 @@ export default function Blog() {
         Recent posts
       </h3>
       <div className="article-preview-container">
-        {articleData.slice(0, numberOfArticlesDisplayed).map((article) => (
+        {articleDataWithUrlsIds.slice(0, numberOfArticlesDisplayed).map((article) => (
           <div className="article" key={article.id}>
-            <Link className="article-link" to={`/blog/${article.id}`}>
+            <Link className="article-link"  to={`/blog/${article.url}`}>
               <img
                 className="article-image"
                 src={article.image}
@@ -47,7 +46,7 @@ export default function Blog() {
         {windowWidth < 1085 && (
           <div className="view-more-articles">
             <a className="view-more-articles-link" onClick={handleViewMoreBtn}>
-              {articlePreviewCount === articleData.length
+              {articlePreviewCount === articleDataWithUrlsIds.length
                 ? "View less"
                 : "View more"}
             </a>

@@ -1,20 +1,21 @@
 import React from "react";
-import articleData from "./data/articledata";
+import articleDataWithUrlsIds from "./data/articledata";
 import { useParams, Link} from "react-router-dom";
 import useWindowWidth from "./hooks/useWindowWidth";
 import useArticlePreviewCount from "./hooks/useArticlePreviewCount";
 import NotFound from "./NotFound";
 
 export default function BlogPost() {
-  const { blogId } = useParams();
+  const { blogUrl } = useParams();
   const [blogPost, setBlogPost] = React.useState(null);
-  const post = articleData.find((post) => post.id === parseInt(blogId));
+  const post = articleDataWithUrlsIds.find((post) => post.url === blogUrl);
   const windowWidth = useWindowWidth();
-  const articlePreviewCount = useArticlePreviewCount(windowWidth, articleData);
+  const articlePreviewCount = useArticlePreviewCount(windowWidth, articleDataWithUrlsIds);
 
+ 
   React.useEffect(() => {
     setBlogPost(post);
-  }, [blogId]);
+  }, [blogUrl]);
 
   if (!blogPost) {
     return <NotFound />;
@@ -60,9 +61,9 @@ export default function BlogPost() {
       <h3 className="article-recent-posts-heading blog-post-recent-post-heading">Recent posts</h3>
 
       <div className="article-preview-container">
-        {articleData.slice(0, articlePreviewCount).map((article) => (
+        { articleDataWithUrlsIds.slice(0, articlePreviewCount).map((article) => (
           <div className="article" key={article.id}>
-            <Link className="article-link" to={`/blog/${article.id}`}>
+            <Link className="article-link" to={`/blog/${article.url}`}>
               <img
                 className="article-image"
                 src={article.image}

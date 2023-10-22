@@ -12,7 +12,6 @@ export default function App() {
 
   function ScrollToTop() {
     const { pathname } = useLocation();
-    console.log(pathname)
     React.useEffect(() => {
       window.scrollTo(0, 0);
     }, [pathname]);
@@ -28,7 +27,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="aboutme" element={<AboutMe />} />
           <Route path="blog" element={<Blog />} />
-          <Route path="blog/:blogId" element={<BlogPost />} />
+          <Route path="blog/:blogUrl" element={<BlogPost />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
